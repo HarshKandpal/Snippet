@@ -32,7 +32,6 @@ function Slidebar() {
         active==0?setActive(imagesSlide.length-1):setActive((active)=>active-1)
     }
     useEffect(()=>{
-        console.log('render')
         let interval = setInterval(() => {
             console.log(active)
             setActive((prev) => (prev + 1) % imagesSlide.length); 
