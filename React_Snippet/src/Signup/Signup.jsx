@@ -24,6 +24,7 @@ function Signup() {
     }
     function validateError(){
       let errors={}
+      //Username should be unique add later
       if(!data.userName.trim())
         errors={...errors,userName:'UserName is required'}
       if(!data.name.trim())

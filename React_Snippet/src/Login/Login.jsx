@@ -2,35 +2,51 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faSquareXTwitter,faSquareGooglePlus} from '@fortawesome/free-brands-svg-icons'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import GenericInput from '../GenericComponents/GenericInput'
+import auth from '../Appwrite/AuthUtil';
 function Login() {
-  const [username,setUserName]=useState('')
+  const nav=useNavigate()
+  const [Email,setUserName]=useState('')
   const [password,setPassword]=useState('')
   const[error,setError]=useState('')
-  const[visiblePassword,setVisiblePassword]=useState(false)
+  const[visiblePassword,setVisiblePassword]=useState(true)
 
   function togglePassword(){
     setVisiblePassword(!visiblePassword)
   }
-  function handleSubmit(event){
+  async function handleSubmit(event){
     event.preventDefault()
-    if(!username || !password){
+    setError('')
+    if(visiblePassword===false)
+      setVisiblePassword(true)
+    if(!Email || !password){
       setError('Please enter both username and password')
       return
     }
-    setError('')
+    else{
+      const session=await auth.Login(Email,password)
+      console.log(session)
+        if(session){
+          nav("/Signup")
+          console.log("Success")
+        }
+        else{
+          console.log("Failure")
+        }
+    }
+    
   }
   return (
     <div className='flex justify-center items-center h-screen '>
         <div className='border rounded-md shadow-xl h-96 w-72 pt-6 pl-6' >
-           <GenericInput labelName='UserName:'
-           id='LoginUserName'
+           <GenericInput labelName='Email:'
+           id='LoginEmail'
            className='border-0 border-gray-300 focus:border-2 focus:border-black outline-none w-56 shadow-md rounded-md mb-4 pl-2 placeholder-gray-300'
            labelClassName='font-semibold text-sm'
-           placeholder='Enter the username'
-           value={username}
+           placeholder='Enter the Email'
+           value={Email}
            onChange={(e)=>setUserName(e.target.value)}/>
             <br/>
             <div className='relative w-56'>
@@ -48,6 +64,7 @@ function Login() {
           <button className='absolute bottom-0 right-0 mr-1 mb-2 h-4 '><FontAwesomeIcon className='pb-1' icon={visiblePassword?faEyeSlash:faEye}/></button>
           </div>
           </div>
+          {/* Make Forgot password page */}
             <div className='flex justify-end pr-9 mb-4'>
             <a href='#' className='text-black text-sm'>Forgot Password?</a>
             </div>
