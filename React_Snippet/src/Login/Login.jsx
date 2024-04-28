@@ -43,7 +43,7 @@ function Login() {
         <div className='border rounded-md shadow-xl h-96 w-72 pt-6 pl-6' >
            <GenericInput labelName='Email:'
            id='LoginEmail'
-           className='border-0 border-gray-300 focus:border-2 focus:border-black outline-none w-56 shadow-md rounded-md mb-4 pl-2 placeholder-gray-300'
+           className='border-2 border-opacity-0 border-gray-300 focus:border-2 focus:border-black outline-none w-56 shadow-md rounded-md mb-4 pl-2 placeholder-gray-300'
            labelClassName='font-semibold text-sm'
            placeholder='Enter the Email'
            value={Email}
@@ -54,13 +54,13 @@ function Login() {
             <br/>
             <input 
               id='LoginPassword'
-              className='border-0 border-gray-300 focus:border-2 focus:border-black outline-none w-56 shadow-md rounded-md 
+              className='border-2 border-opacity-0 border-gray-300 focus:border-2 focus:border-black outline-none w-56 shadow-md rounded-md 
               pl-2 placeholder-gray-300 mb-1'
               placeholder='Enter the Password'
               type={visiblePassword?'password':'text'}
               value={password}
               onChange={(e)=>setPassword(e.target.value)}/>
-          <div className=''onClick={togglePassword}>
+          <div onClick={togglePassword}>
           <button className='absolute bottom-0 right-0 mr-1 mb-2 h-4 '><FontAwesomeIcon className='pb-1' icon={visiblePassword?faEyeSlash:faEye}/></button>
           </div>
           </div>
