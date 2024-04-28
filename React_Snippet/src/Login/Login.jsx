@@ -83,7 +83,7 @@ function Login() {
              <FontAwesomeIcon icon={faSquareGooglePlus} className='w-6 h-6' /></button>
              </div>
              <div className='pl-11 mt-10'>
-               <p className='text-sm'>Not registered?<Link to='/Signup' className='text-black hover:text-blue-400 hover:text-blue-400 hover:underline underline-offset-2'> Signup</Link></p>
+               <p className='text-sm'>Not registered?<Link to='/Signup' className='text-black  hover:text-blue-400 hover:underline underline-offset-2'> Signup</Link></p>
         </div>
         </div>  
     </div>
