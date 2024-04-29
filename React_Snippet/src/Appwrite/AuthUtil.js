@@ -18,6 +18,14 @@ class AuthUtil{
             return false;
         }
     }
+    async Logout(){
+        try{
+            return await this.account.deleteSessions()
+        }
+        catch(ex){
+                console.log(ex)
+        }
+    }
 
 }
 

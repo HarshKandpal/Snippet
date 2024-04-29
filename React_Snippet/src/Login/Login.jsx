@@ -6,8 +6,11 @@ import {Link,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import GenericInput from '../GenericComponents/GenericInput'
 import auth from '../Appwrite/AuthUtil';
+import {useSelector,useDispatch} from 'react-redux'
+import {setLogInUser} from '../Store/Slice'
 function Login() {
   const nav=useNavigate()
+  const disptach=useDispatch()
   const [Email,setUserName]=useState('')
   const [password,setPassword]=useState('')
   const[error,setError]=useState('')
@@ -29,10 +32,13 @@ function Login() {
       const session=await auth.Login(Email,password)
       console.log(session)
         if(session){
-          nav("/Signup")
-          console.log("Success")
+          setUserName('')
+          setPassword('')
+          disptach(setLogInUser(session))
+          nav("/Home")
         }
         else{
+          nav("/Signup")
           console.log("Failure")
         }
     }

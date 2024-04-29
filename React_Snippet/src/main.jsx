@@ -7,6 +7,7 @@ import {Provider} from 'react-redux'
 import store from './Store/Store.js'
 import Login from './Login/Login'
 import Signup from './Signup/Signup.jsx'
+import Home from './Components/Home.jsx'
 const router=createBrowserRouter([
     {
         path:"/",
@@ -15,6 +16,10 @@ const router=createBrowserRouter([
     {
         path:"/Signup",
         element:<Signup/>
+    },
+    {
+        path:"/Home",
+        element:<Home/>
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -23,9 +28,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     // </Provider>
     // <Login/>
     // <Signup/>
+    <Provider store={store}>
     <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
+  </Provider>
     
   
 )
